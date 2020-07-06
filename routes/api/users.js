@@ -22,7 +22,17 @@ module.exports = (app) => {
 	});
 
 	app.put('/decks/:id', (req, res) => {
-		User.findOneAndUpdate({ _id: req.params.id }, {decks: req.body})
+		User.findOneAndUpdate({ _id: req.params.id }, 
+			{
+				decks: [
+					{
+						'name': 'Front End Languages',
+						'descr': 'Help with learning the front end languages of programming.',
+						'cards': []
+					}
+				]
+			}
+		)
 		.then(newDeck => res.json(newDeck))
 		.catch(err => console.log(err));
 	});
@@ -32,9 +42,22 @@ module.exports = (app) => {
 		{
 			decks: 
 			[{
-				cards: req.body
+				cards: [
+					{
+						"keyWord": "HTML",
+						"definition": "Stands for Hyper Text Markup Language. The standard markup language for Web pages."
+					},
+					{
+						"keyWord": "CSS",
+						"definition": "Stands for Cascading Style Sheets. This describes how HTML elements are to be displayed on screen, paper, or in other media."
+					},
+					{
+						"keyWord": "JavaScript",
+						"definition": "Scripting or programming language that allows you to implement complex features on web pages."
+					}
+				]
 			}]
-		})
+		}, {upsert: true})
 		.then(newDeck => res.json(newDeck))
 		.catch(err => console.log(err));
 	});
