@@ -9,7 +9,7 @@ module.exports = (app) => {
 			.catch((err) => console.log(err));
 	});
 	// Get one user by id
-	app.get('/:id', (req, res) => {
+	app.get('/users/:id', (req, res) => {
 		User.findById(req.params.id)
 		.then(user => res.json(user))
 		.catch(err => console.log(err));
