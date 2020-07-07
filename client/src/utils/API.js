@@ -12,16 +12,12 @@ export default {
   createUser: () => {
     return axios.post('/users');
   },
-  updateUserDecks: (id) => {
-    return axios.post('/decks/' + id);
+  updateUser: (id) => {
+    return axios.put('/users/' + id);
   },
-  updateDeckCards: (id) => {
-    return axios.post('/cards/' + id);
+  deleteUser: (id) => {
+    return axios.delete("/users/" + id);
   }
-//   // Deletes the book with the given id
-//   deleteBook: function(id) {
-//     return axios.delete("/api/books/" + id);
-//   },
 //   // Saves a book to the database
 //   saveBook: function(bookData) {
 //     return axios.post("/api/books", bookData);
